@@ -7,16 +7,16 @@ function randomColor() {
 }
 
 export default class Background {
-  constructor() {
-    window.addEventListener(ButtonClicked.type, () => {
+  constructor(eventBus) {
+    eventBus.addEventListener(ButtonClicked.type, () => {
       document.body.style.backgroundColor = randomColor()
     })
 
-    window.addEventListener(AwesomeMode.type, e => {
+    eventBus.addEventListener(AwesomeMode.type, e => {
       this.beAwesome = e.detail.enabled
     })
 
-    window.addEventListener(Pulse.type, () => {
+    eventBus.addEventListener(Pulse.type, () => {
       if (this.beAwesome) {
         document.body.style.backgroundColor = randomColor()
       }

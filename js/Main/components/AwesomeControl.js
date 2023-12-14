@@ -1,13 +1,13 @@
 import {AwesomeMode} from "../events/AwesomeMode.js";
 
 export default class AwesomeControl {
-  constructor(checkbox) {
+  constructor(eventBus, checkbox) {
     this.checkbox = checkbox;
 
-    window.dispatchEvent(new AwesomeMode(this.state))
+    eventBus.dispatchEvent(new AwesomeMode(this.state))
 
     this.checkbox.addEventListener('change', () => {
-      window.dispatchEvent(new AwesomeMode(this.state))
+      eventBus.dispatchEvent(new AwesomeMode(this.state))
     })
   }
 

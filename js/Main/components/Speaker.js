@@ -8,8 +8,8 @@ function say(text) {
   synth.speak(utterThis);
 }
 
-export default function initializeSpeaker() {
-  window.addEventListener(Pulse.type, () => say('tick'))
+export default function initializeSpeaker(eventBus) {
+  eventBus.addEventListener(Pulse.type, () => say('tick'))
 
-  window.addEventListener(NameChanged.type, (e) => say(e.detail.name))
+  eventBus.addEventListener(NameChanged.type, (e) => say(e.detail.name))
 }

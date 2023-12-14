@@ -2,7 +2,7 @@ import {ButtonClicked} from "../events/ButtonClicked.js";
 import {Pulse} from "../events/Pulse.js";
 
 export default class Button {
-  constructor() {
+  constructor(eventBus) {
     this.counter = 10
     this.button = document.querySelector('#button')
 
@@ -10,7 +10,7 @@ export default class Button {
       window.dispatchEvent(new ButtonClicked())
     })
 
-    window.addEventListener(Pulse.type, () => {
+    eventBus.addEventListener(Pulse.type, () => {
       this.decrementCounter()
     })
 

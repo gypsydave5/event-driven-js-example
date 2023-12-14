@@ -4,25 +4,25 @@ import {NameChanged} from "../events/NameChanged.js";
 import {AwesomeMode} from "../events/AwesomeMode.js";
 
 export default class Logger {
-  constructor() {
-    window.addEventListener(ButtonClicked.type, () => {
-      console.log('button clicked')
+  constructor(eventBus) {
+    eventBus.addEventListener(ButtonClicked.type, () => {
+      this.send('button clicked')
     })
 
-    window.addEventListener(Pulse.type, () => {
-      console.log('pulse!')
+    eventBus.addEventListener(Pulse.type, () => {
+      this.send('pulse!')
     })
 
-    window.addEventListener(NameChanged.type, (e) => {
+    eventBus.addEventListener(NameChanged.type, (e) => {
       const name = e.detail.name
-      console.log(`name changed to ${name}`)
+      this.send(`name changed to ${name}`)
     })
 
-    window.addEventListener(AwesomeMode.type, (e) => {
+    eventBus.addEventListener(AwesomeMode.type, (e) => {
       if (e.detail.enabled) {
-        console.log('AWESOME MODE ENABLED')
+        this.send('AWESOME MODE ENABLED')
       } else {
-        console.log('AWESOME MODE DISABLED')
+        this.send('AWESOME MODE DISABLED')
       }
     })
   }
